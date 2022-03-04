@@ -1,0 +1,61 @@
+package com.flightapp.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.flightapp.entities.BookingDetails;
+import com.flightapp.entities.User;
+import com.flightapp.services.UserService;
+
+@RestController
+@CrossOrigin
+public class UserController {
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Autowired
+	private UserService userService;
+
+	@GetMapping("/users")
+	public List<User> getAllUsers() {
+		return userService.getAllUsers();
+	}
+
+	@PostMapping("/users")
+	public User saveUser(@RequestBody User u) {
+		return userService.saveUser(u);
+	}
+
+	@GetMapping("/users/{id}")
+	public User getUser(int id) {
+		return userService.getUser(id);
+	}
+
+	@GetMapping("bookings/bypnr/{pnr}")
+	private BookingDetails[] getAllBookings(@PathVariable int pnr) {
+
+		ResponseEntity<BookingDetails[]> res = restTemplate.getForEntity("http://FLIGHT-SERVICE/bookings/bypnr/{pnr}",
+				BookingDetails[].class, pnr);
+
+		return res.getBody();
+	}
+	
+	@GetMapping("bookings/bypnr/{userid}")
+	private BookingDetails[] getAllBookings(@PathVariable int userid) {
+
+		ResponseEntity<BookingDetails[]> res = restTemplate.getForEntity("http://FLIGHT-SERVICE/bookings/bypnr/{pnr}",
+				BookingDetails[].class, userid);
+
+		return res.getBody();
+	}
+}

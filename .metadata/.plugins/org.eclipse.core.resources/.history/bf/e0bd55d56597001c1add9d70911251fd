@@ -1,0 +1,34 @@
+package com.flightapp.services;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.flightapp.entities.BookingDetails;
+import com.flightapp.repositories.BookingsRepository;
+import com.google.common.primitives.Ints;
+
+@Service
+public class BookingsService {
+
+	@Autowired
+	private BookingsRepository bookingsRepository;
+
+	public List<BookingDetails> getdetailsByPnr(int pnr) {
+		
+		Iterable<Integer> pnrs = Ints.asList(pnr);
+		List<BookingDetails> bookingsList = bookingsRepository.findAllById(pnrs);
+
+		return bookingsList;
+	}
+	
+	public List<BookingDetails> getdetailsByUsrId(int id) {
+
+		List<BookingDetails> bookingsList = bookingsRepository.findByuserID(id);
+
+		return bookingsList;
+	}
+}

@@ -1,0 +1,42 @@
+package com.flightapp.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.flightapp.entities.UserTesting;
+import com.flightapp.repositories.UserRepository;
+
+@Service
+public class UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	public List<UserTesting> getAllUsers()
+	{
+		return userRepository.findAll();
+	}
+	
+	public UserTesting saveUser(UserTesting u)
+	{
+		return userRepository.save(u);
+	}
+	
+	public UserTesting getUser(int id)
+	{
+		Optional<UserTesting> usr= userRepository.findById(id);
+		
+		return usr.get();
+	}
+	
+	public String deleteUser(int id)
+	{
+		userRepository.deleteById(id);
+		
+		return "Successfully deleted the USER:"+id;
+	}
+
+}

@@ -1,0 +1,23 @@
+package com.flightapp.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.flightapp.entities.BookingDetails;
+import com.flightapp.repositories.BookingsRepository;
+
+@RestController
+public class BookingsContoller {
+
+	@Autowired
+	private BookingsRepository bookingsRepository;
+	
+	@GetMapping("")
+	public String bookTicket(int flightID)
+	{
+		
+		return  new String();
+	}
+	
+}

@@ -1,0 +1,33 @@
+package com.flightapp.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.CollectionId;
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int usrID;
+
+	@Column(nullable = false)
+	private String usrName;
+	
+	@Column(nullable = false)
+	private String usrEmail;
+
+	@Column(nullable = false)
+	private String usrMobile;
+
+	@Column(nullable = false)
+	private String usrPassword;
+
+	@Column(nullable = false)
+	private int usrAge;
+
+}

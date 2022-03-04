@@ -1,0 +1,28 @@
+package com.flightapp.repositories;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.flightapp.entities.Flight;
+
+public interface FlightRepository extends JpaRepository<Flight, Integer>{
+
+	/*
+	 * EntityManager entityManager =null; Query q = (Query) entityManager.
+	 * createQuery("update flight f set f.status=:status where f.airline=:airlineCode"
+	 * );
+	 * 
+	 * @Query void updateStatus(@Param("status") String status,@Param("airlineCode")
+	 * String code);
+	 */
+	
+	@NamedQuery(
+			name="updateStatus",
+			query="update flight f set f.status=:status where f.airline=:airlineCode"
+			
+			);
+}

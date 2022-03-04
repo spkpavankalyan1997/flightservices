@@ -1,0 +1,30 @@
+package com.flightapp.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.flightapp.entities.Flight;
+import com.flightapp.services.FlightService;
+
+@RestController
+public class FlightController {
+
+	@Autowired
+	private FlightService flightService;
+
+	@GetMapping("/flights")
+	private List<Flight> getAllFlights() {
+		return flightService.getAllFlights();
+	}
+	
+	@PostMapping
+	private Flight saveFlight(@PathVariable Flight f)
+	{
+		return flightService.saveFlight(f);
+	}
+}

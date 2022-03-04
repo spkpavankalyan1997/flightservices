@@ -1,0 +1,50 @@
+package com.flightapp.entities;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Flight {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int flightId;
+
+	@Column(nullable = false)
+	private String airLine;
+
+	@Column(nullable = false)
+	private String fromCity;
+
+	@Column(nullable = false)
+	private String toCity;
+	
+	@Column(nullable = false)
+	private int busiSeats;
+	
+	@Column(nullable = false)
+	private int nbSeats;
+	
+	@Column(nullable = false)
+	private LocalDateTime fromTime;
+	
+	@Column(nullable = false)
+	private LocalDateTime toTime;
+	
+	@Column(nullable = false)
+	private double busiClassPrice;
+	
+	@Column(nullable = false)
+	private double NonBusiClassPrice;
+	
+	@Column(nullable = false)
+	private String meal;
+	
+	@Column
+	private int rows;
+}

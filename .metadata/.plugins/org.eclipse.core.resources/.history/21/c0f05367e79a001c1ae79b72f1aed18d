@@ -1,0 +1,19 @@
+package com.flightapp.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.flightapp.entities.BookingDetails;
+
+@RestController
+public class BookingsContoller {
+
+	
+	@GetMapping("")
+	public String bookTicket(int flightID)
+	{
+		
+		return  new BookingDetails();
+	}
+	
+}

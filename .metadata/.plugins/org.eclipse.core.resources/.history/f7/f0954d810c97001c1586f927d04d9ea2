@@ -1,0 +1,15 @@
+spring.application.name=api-gateway
+
+server.port=8989
+
+
+# localhost:8989/{zuul.routes.book.path}/**
+
+zuul.routes.airline.path= /admin/**
+zuul.routes.airline.url= AIRLINES
+
+# zuul.routes.movie.path= /movies/**
+# zuul.routes.movie.url= MOVIES
+
+
+

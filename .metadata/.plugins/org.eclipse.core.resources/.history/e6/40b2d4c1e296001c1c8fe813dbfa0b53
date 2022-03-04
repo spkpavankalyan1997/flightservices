@@ -1,0 +1,6 @@
+package com.flightapp.services;
+
+@Service
+public class UserService {
+
+}

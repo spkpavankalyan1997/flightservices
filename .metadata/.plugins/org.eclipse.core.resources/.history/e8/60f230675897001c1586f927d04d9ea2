@@ -1,0 +1,36 @@
+package com.flightapp.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.flightapp.entities.Airline;
+import com.flightapp.entities.Cinema;
+
+@RestController
+public class AdminController {
+
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	@GetMapping("")
+	private List<Airline> getAllAirlines()
+	{
+		 ResponseEntity<List<Airline>> res = restTemplate.exchange(
+		            "http://FLIGHT-SERVICE/airlines", 
+		            HttpMethod.GET, 
+		            new HttpEntity(null), 
+		            new ParameterizedTypeReference<List<Airline>>() {}
+		        );
+
+		        return res.getBody();
+	}
+}

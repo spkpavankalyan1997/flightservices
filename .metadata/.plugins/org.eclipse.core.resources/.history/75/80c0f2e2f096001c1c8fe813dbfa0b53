@@ -1,0 +1,46 @@
+package com.flightapp.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.flightapp.entities.AirLine;
+import com.flightapp.repositories.AirlineRepository;
+import com.flightapp.repositories.FlightRepository;
+
+@Service
+public class AirlineService {
+
+	@Autowired
+	private AirlineRepository airlineRepository;
+	
+	@Autowired
+	private FlightRepository flightRepository;
+	
+	public List<AirLine> getAllAirlines()
+	{
+		return airlineRepository.findAll();
+	}
+	
+	public AirLine saveAirline(AirLine a)
+	{
+		return airlineRepository.save(a);
+	}
+	
+	public AirLine updateStatus(int id)
+	{
+		AirLine a=new AirLine();
+		Optional<AirLine> airline=airlineRepository.findById(id);
+		if(airline.isPresent())
+		{
+			a=airline.get();
+			a.setStatus("BLOCKED");
+			flightRepository.updateStatus("BLOCKED", a.getAirLineCode());
+			return airlineRepository.save(a);
+		}
+		return a;
+	}
+	
+}

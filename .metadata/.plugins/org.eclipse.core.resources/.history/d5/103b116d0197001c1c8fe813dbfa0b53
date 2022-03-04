@@ -1,0 +1,25 @@
+package com.flightapp.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
+public class Passenger {
+
+	private int pnrid;
+	
+	@Column(nullable = false)
+	private String passengerName;
+	
+	@Column(nullable = false)
+	private String passengerGender;
+	
+	@Column(nullable = false)
+	private int age;
+	
+	@Column(nullable = false)
+	private String meals;
+	
+	@Column(nullable = false)
+	private int seatNo;
+}

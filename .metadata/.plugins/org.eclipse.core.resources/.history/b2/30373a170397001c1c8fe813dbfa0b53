@@ -1,0 +1,42 @@
+package com.flightapp.entities;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class BookingDetails {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int pnr;
+	
+	@Column(nullable = false)
+	private int userID;
+	
+	@Column(nullable = false)
+	private double totAmt;
+	
+	@Column(nullable = false)
+	private int totSeats;
+	
+	@Column(nullable = false)
+	private int flightid;
+	
+	@Column(nullable = false)
+	private String fromPlace;
+	
+	@Column(nullable = false)
+	private String toPlace;
+	
+	@Column(nullable = false)
+	private LocalDateTime fromTime;
+	
+	@Column(nullable = false)
+	private LocalDateTime toTime; 
+	
+}
