@@ -23,13 +23,10 @@ public class BookingDetails {
 	private int userID;
 
 	@Column(nullable = false)
-	private double totAmt;
+	private double totalAmount;
 
 	@Column(nullable = false)
-	private int totSeats;
-
-	@Column(nullable = false)
-	private int flightid;
+	private int flightID;
 
 	@Column(nullable = false)
 	private String fromPlace;
@@ -48,7 +45,7 @@ public class BookingDetails {
 	private List<Passenger> passengers;
 	
 	@Column(nullable = false)
-	private String status;
+	private String status="";
 
 	public int getPnr() {
 		return pnr;
@@ -66,28 +63,20 @@ public class BookingDetails {
 		this.userID = userID;
 	}
 
-	public double getTotAmt() {
-		return totAmt;
+	public double getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setTotAmt(double totAmt) {
-		this.totAmt = totAmt;
+	public void setTotalAmount(double totAmt) {
+		this.totalAmount = totAmt;
 	}
 
-	public int getTotSeats() {
-		return totSeats;
+	public int getFlightID() {
+		return flightID;
 	}
 
-	public void setTotSeats(int totSeats) {
-		this.totSeats = totSeats;
-	}
-
-	public int getFlightid() {
-		return flightid;
-	}
-
-	public void setFlightid(int flightid) {
-		this.flightid = flightid;
+	public void setFlightID(int flightid) {
+		this.flightID = flightid;
 	}
 
 	public String getFromPlace() {

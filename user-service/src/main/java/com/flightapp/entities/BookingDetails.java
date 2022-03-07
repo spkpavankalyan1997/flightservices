@@ -3,24 +3,13 @@ package com.flightapp.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 public class BookingDetails {
 
 	private int pnr;
 
 	private int userID;
 
-	private double totAmt;
-
-	private int totSeats;
+	private double totalAmount;
 
 	private int flightid;
 
@@ -52,20 +41,12 @@ public class BookingDetails {
 		this.userID = userID;
 	}
 
-	public double getTotAmt() {
-		return totAmt;
+	public double getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setTotAmt(double totAmt) {
-		this.totAmt = totAmt;
-	}
-
-	public int getTotSeats() {
-		return totSeats;
-	}
-
-	public void setTotSeats(int totSeats) {
-		this.totSeats = totSeats;
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	public int getFlightid() {

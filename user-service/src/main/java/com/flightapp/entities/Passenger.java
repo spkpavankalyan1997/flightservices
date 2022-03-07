@@ -1,22 +1,30 @@
 package com.flightapp.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 public class Passenger {
+
+	private int id;
 
 	private int pnr;
 
-	private String passengerName;
+	private String name;
 
-	private String passengerGender;
+	private String gender;
 
 	private int age;
 
 	private String meals;
 
 	private int seatNo;
+
+	private double amount;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getPnr() {
 		return pnr;
@@ -26,20 +34,20 @@ public class Passenger {
 		this.pnr = pnr;
 	}
 
-	public String getPassengerName() {
-		return passengerName;
+	public String getName() {
+		return name;
 	}
 
-	public void setPassengerName(String passengerName) {
-		this.passengerName = passengerName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getPassengerGender() {
-		return passengerGender;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setPassengerGender(String passengerGender) {
-		this.passengerGender = passengerGender;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public int getAge() {
@@ -64,6 +72,14 @@ public class Passenger {
 
 	public void setSeatNo(int seatNo) {
 		this.seatNo = seatNo;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 }

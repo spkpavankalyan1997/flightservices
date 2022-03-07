@@ -15,10 +15,10 @@ public class Flight {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int flightId;
+	private int id;
 
 	@Column(nullable = false)
-	private String airLine;
+	private String airlineCode;
 
 	@Column(nullable = false)
 	private String fromCity;
@@ -27,10 +27,10 @@ public class Flight {
 	private String toCity;
 
 	@Column(nullable = false)
-	private int busiSeats;
+	private int businessSeats;
 
 	@Column(nullable = false)
-	private int nbSeats;
+	private int nonBusinessSeats;
 
 	@Column(nullable = false)
 	private LocalDateTime fromTime;
@@ -39,34 +39,34 @@ public class Flight {
 	private LocalDateTime toTime;
 
 	@Column(nullable = false)
-	private double busiClassPrice;
+	private double businessClassPrice;
 
 	@Column(nullable = false)
-	private double NonBusiClassPrice;
+	private double NonBusinessClassPrice;
 
 	@Column(nullable = false)
-	private String meal;
+	private String[] mealTypes;
 
 	@Column(nullable = false)
 	private int noofRows = 0;
-	
-	@Column(nullable = false,updatable =true)
+
+	@Column(nullable = false, updatable = true)
 	private String status;
 
-	public int getFlightId() {
-		return flightId;
+	public int getId() {
+		return id;
 	}
 
-	public void setFlightId(int flightId) {
-		this.flightId = flightId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getAirLine() {
-		return airLine;
+	public String getAirlineCode() {
+		return airlineCode;
 	}
 
-	public void setAirLine(String airLine) {
-		this.airLine = airLine;
+	public void setAirlineCode(String airlineCode) {
+		this.airlineCode = airlineCode;
 	}
 
 	public String getFromCity() {
@@ -85,20 +85,20 @@ public class Flight {
 		this.toCity = toCity;
 	}
 
-	public int getBusiSeats() {
-		return busiSeats;
+	public int getBusinessSeats() {
+		return businessSeats;
 	}
 
-	public void setBusiSeats(int busiSeats) {
-		this.busiSeats = busiSeats;
+	public void setBusinessSeats(int busiSeats) {
+		this.businessSeats = busiSeats;
 	}
 
-	public int getNbSeats() {
-		return nbSeats;
+	public int getNonBusinessSeats() {
+		return nonBusinessSeats;
 	}
 
-	public void setNbSeats(int nbSeats) {
-		this.nbSeats = nbSeats;
+	public void setNonBusinessSeats(int nbSeats) {
+		this.nonBusinessSeats = nbSeats;
 	}
 
 	public LocalDateTime getFromTime() {
@@ -117,28 +117,28 @@ public class Flight {
 		this.toTime = toTime;
 	}
 
-	public double getBusiClassPrice() {
-		return busiClassPrice;
+	public double getBusinessClassPrice() {
+		return businessClassPrice;
 	}
 
-	public void setBusiClassPrice(double busiClassPrice) {
-		this.busiClassPrice = busiClassPrice;
+	public void setBusinessClassPrice(double busiClassPrice) {
+		this.businessClassPrice = busiClassPrice;
 	}
 
-	public double getNonBusiClassPrice() {
-		return NonBusiClassPrice;
+	public double getNonBusinessClassPrice() {
+		return NonBusinessClassPrice;
 	}
 
-	public void setNonBusiClassPrice(double nonBusiClassPrice) {
-		NonBusiClassPrice = nonBusiClassPrice;
+	public void setNonBusinessClassPrice(double nonBusiClassPrice) {
+		NonBusinessClassPrice = nonBusiClassPrice;
 	}
 
-	public String getMeal() {
-		return meal;
+	public String[] getMealTypes() {
+		return mealTypes;
 	}
 
-	public void setMeal(String meal) {
-		this.meal = meal;
+	public void setMealTypes(String[] meal) {
+		this.mealTypes = meal;
 	}
 
 	public int getNoofRows() {

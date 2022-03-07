@@ -1,0 +1,11 @@
+package com.flightapp.services;
+
+import java.util.List;
+
+import com.flightapp.entities.Airline;
+
+public interface AirlineService {
+
+	List<Airline> getAllAirlines();
+
+}

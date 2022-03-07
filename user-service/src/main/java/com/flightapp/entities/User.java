@@ -8,76 +8,74 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-
 @Entity
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int usrID;
+	private int id;
 
 	@Column(nullable = false)
-	private String usrName;
-	
-	@Column(nullable = false)
-	private String usrEmail;
+	private String name;
 
 	@Column(nullable = false)
-	private String usrMobile;
+	private String email;
 
 	@Column(nullable = false)
-	private String usrPassword;
+	private String mobile;
 
-	@JsonInclude
 	@Column(nullable = false)
-	private int usrAge;
+	private String password;
 
-	public int getUsrID() {
-		return usrID;
+	@Column(nullable = false)
+	private int age;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setUsrID(int usrID) {
-		this.usrID = usrID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getUsrName() {
-		return usrName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsrName(String usrName) {
-		this.usrName = usrName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getUsrEmail() {
-		return usrEmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsrEmail(String usrEmail) {
-		this.usrEmail = usrEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getUsrMobile() {
-		return usrMobile;
+	public String getMobile() {
+		return mobile;
 	}
 
-	public void setUsrMobile(String usrMobile) {
-		this.usrMobile = usrMobile;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
-	public String getUsrPassword() {
-		return usrPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUsrPassword(String usrPassword) {
-		this.usrPassword = usrPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public int getUsrAge() {
-		return usrAge;
+	public int getAge() {
+		return age;
 	}
 
-	public void setUsrAge(int usrAge) {
-		this.usrAge = usrAge;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }

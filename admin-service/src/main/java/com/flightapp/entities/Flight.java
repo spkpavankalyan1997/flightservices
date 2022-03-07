@@ -4,46 +4,46 @@ import java.time.LocalDateTime;
 
 public class Flight {
 
-	private int flightId;
+	private int id;
 
-	private String airLine;
+	private String airlineCode;
 
 	private String fromCity;
 
 	private String toCity;
 
-	private int busiSeats;
+	private int businessSeats;
 
-	private int nbSeats;
+	private int nonBusinessSeats;
 
 	private LocalDateTime fromTime;
 
 	private LocalDateTime toTime;
 
-	private double busiClassPrice;
+	private double businessClassPrice;
 
-	private double NonBusiClassPrice;
+	private double NonBusinessClassPrice;
 
-	private String meal;
+	private String[] mealTypes;
 
 	private int noofRows = 0;
 
 	private String status;
 
-	public int getFlightId() {
-		return flightId;
+	public int getId() {
+		return id;
 	}
 
-	public void setFlightId(int flightId) {
-		this.flightId = flightId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getAirLine() {
-		return airLine;
+	public String getAirlineCode() {
+		return airlineCode;
 	}
 
-	public void setAirLine(String airLine) {
-		this.airLine = airLine;
+	public void setAirlineCode(String airlineCode) {
+		this.airlineCode = airlineCode;
 	}
 
 	public String getFromCity() {
@@ -62,20 +62,20 @@ public class Flight {
 		this.toCity = toCity;
 	}
 
-	public int getBusiSeats() {
-		return busiSeats;
+	public int getBusinessSeats() {
+		return businessSeats;
 	}
 
-	public void setBusiSeats(int busiSeats) {
-		this.busiSeats = busiSeats;
+	public void setBusinessSeats(int businessSeats) {
+		this.businessSeats = businessSeats;
 	}
 
-	public int getNbSeats() {
-		return nbSeats;
+	public int getNonBusinessSeats() {
+		return nonBusinessSeats;
 	}
 
-	public void setNbSeats(int nbSeats) {
-		this.nbSeats = nbSeats;
+	public void setNonBusinessSeats(int nonBusinessSeats) {
+		this.nonBusinessSeats = nonBusinessSeats;
 	}
 
 	public LocalDateTime getFromTime() {
@@ -94,28 +94,28 @@ public class Flight {
 		this.toTime = toTime;
 	}
 
-	public double getBusiClassPrice() {
-		return busiClassPrice;
+	public double getBusinessClassPrice() {
+		return businessClassPrice;
 	}
 
-	public void setBusiClassPrice(double busiClassPrice) {
-		this.busiClassPrice = busiClassPrice;
+	public void setBusinessClassPrice(double businessClassPrice) {
+		this.businessClassPrice = businessClassPrice;
 	}
 
-	public double getNonBusiClassPrice() {
-		return NonBusiClassPrice;
+	public double getNonBusinessClassPrice() {
+		return NonBusinessClassPrice;
 	}
 
-	public void setNonBusiClassPrice(double nonBusiClassPrice) {
-		NonBusiClassPrice = nonBusiClassPrice;
+	public void setNonBusinessClassPrice(double nonBusinessClassPrice) {
+		NonBusinessClassPrice = nonBusinessClassPrice;
 	}
 
-	public String getMeal() {
-		return meal;
+	public String[] getMealTypes() {
+		return mealTypes;
 	}
 
-	public void setMeal(String meal) {
-		this.meal = meal;
+	public void setMealTypes(String[] mealTypes) {
+		this.mealTypes = mealTypes;
 	}
 
 	public int getNoofRows() {

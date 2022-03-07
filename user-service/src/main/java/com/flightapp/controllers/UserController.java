@@ -32,8 +32,8 @@ public class UserController {
 	}
 
 	@PostMapping("/users")
-	public User saveUser(@RequestBody User u) {
-		return userService.saveUser(u);
+	public int saveUser(@RequestBody User user) {
+		return userService.saveUser(user);
 	}
 
 	@GetMapping("/users/{id}")
@@ -44,25 +44,23 @@ public class UserController {
 	@GetMapping("/bookings/bypnr/{pnr}")
 	private BookingDetails[] getBookingsByPnr(@PathVariable int pnr) {
 
-		ResponseEntity<BookingDetails[]> res = restTemplate.getForEntity("http://FLIGHT-SERVICE/bookings/bypnr/{pnr}",
-				BookingDetails[].class, pnr);
+		ResponseEntity<BookingDetails[]> response = restTemplate
+				.getForEntity("http://FLIGHT-SERVICE/bookings/bypnr/{pnr}", BookingDetails[].class, pnr);
 
-		return res.getBody();
+		return response.getBody();
 	}
 
 	@GetMapping("/bookings/byuserid/{userid}")
 	private BookingDetails[] getBookingsByUserID(@PathVariable int userid) {
 
-		ResponseEntity<BookingDetails[]> res = restTemplate
+		ResponseEntity<BookingDetails[]> response = restTemplate
 				.getForEntity("http://FLIGHT-SERVICE/bookings/byuserid/{userid}", BookingDetails[].class, userid);
 
-		return res.getBody();
+		return response.getBody();
 	}
 
 	@GetMapping("/bookings/book/{flightID}")
-	private String blockAirlines(@PathVariable int flightID) {
-		String res = restTemplate.getForObject("http://FLIGHT-SERVICE/bookings/book/{flightID}",
-				String.class,flightID);
-		return res;
+	private void blockAirlines(@PathVariable int flightID) {
+		restTemplate.getForObject("http://FLIGHT-SERVICE/bookings/book/{flightID}", Void.class, flightID);
 	}
 }

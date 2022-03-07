@@ -25,50 +25,47 @@ public class AdminController {
 
 	@GetMapping("/airlines")
 	private List<Airline> getAllAirlines() {
-		ResponseEntity<List<Airline>> res = restTemplate.exchange("http://FLIGHT-SERVICE/airlines", HttpMethod.GET,
+		ResponseEntity<List<Airline>> response = restTemplate.exchange("http://FLIGHT-SERVICE/airlines", HttpMethod.GET,
 				new HttpEntity(null), new ParameterizedTypeReference<List<Airline>>() {
 				});
 
-		return res.getBody();
+		return response.getBody();
 	}
 
 	@PostMapping("/airlines")
-	private Airline saveAirlines(@RequestBody Airline a) {
-		Airline airline = restTemplate.postForObject("http://FLIGHT-SERVICE/airlines", a, Airline.class);
-		return airline;
+	private int saveAirlines(@RequestBody Airline airline) {
+		int id = restTemplate.postForObject("http://FLIGHT-SERVICE/airlines", airline, Integer.class);
+		return id;
 	}
 
 	@GetMapping("/airlines/block/{id}")
-	private Airline blockAirlines(@PathVariable int id) {
-		Airline airline = restTemplate.getForObject("http://FLIGHT-SERVICE/airlines/block/{id}", Airline.class, id);
-		return airline;
+	private void blockAirlines(@PathVariable int id) {
+		restTemplate.getForObject("http://FLIGHT-SERVICE/airlines/block/{id}", Void.class, id);
 	}
 
 	@GetMapping("/flights")
 	private List<Flight> getAllFlights() {
-		ResponseEntity<List<Flight>> res = restTemplate.exchange("http://FLIGHT-SERVICE/flights", HttpMethod.GET,
+		ResponseEntity<List<Flight>> response = restTemplate.exchange("http://FLIGHT-SERVICE/flights", HttpMethod.GET,
 				new HttpEntity(null), new ParameterizedTypeReference<List<Flight>>() {
 				});
 
-		return res.getBody();
+		return response.getBody();
 	}
 
 	@PostMapping("/flights")
-	private Flight saveFlight(@RequestBody Flight f) {
-		Flight flight = restTemplate.postForObject("http://FLIGHT-SERVICE/flights", f, Flight.class);
-		return flight;
+	private int saveFlight(@RequestBody Flight flight) {
+		int id = restTemplate.postForObject("http://FLIGHT-SERVICE/flights", flight, Integer.class);
+		return id;
 	}
 
 	@PostMapping("/flights/updateflight")
-	private Flight updateFlight(@RequestBody Flight f) {
-		Flight flight = restTemplate.postForObject("http://FLIGHT-SERVICE/flights/updateflight", f, Flight.class);
-		return flight;
+	private void updateFlight(@RequestBody Flight flight) {
+		restTemplate.postForObject("http://FLIGHT-SERVICE/flights/updateflight", flight, Void.class);
 	}
 
 	@GetMapping("/flights/cancelflight/{id}")
-	private Flight cancelFlight(@PathVariable int id) {
-		Flight Flight = restTemplate.getForObject("http://FLIGHT-SERVICE/flights/cancelflight/{id}", Flight.class, id);
-		return Flight;
+	private void cancelFlight(@PathVariable int id) {
+		restTemplate.getForObject("http://FLIGHT-SERVICE/flights/cancelflight/{id}", Void.class, id);
 	}
 
 }

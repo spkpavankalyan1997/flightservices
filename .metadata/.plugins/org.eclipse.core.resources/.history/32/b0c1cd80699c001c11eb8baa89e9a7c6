@@ -1,0 +1,91 @@
+package com.flightapp.services;
+
+import java.time.LocalDateTime;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import com.flightapp.entities.BookingDetails;
+import com.flightapp.entities.Flight;
+import com.flightapp.entities.Passenger;
+import com.flightapp.repositories.BookingsRepository;
+import com.flightapp.repositories.FlightRepository;
+import com.flightapp.repositories.PassengerRepository;
+import com.google.common.primitives.Ints;
+
+@Service
+public class BookingsService {
+
+	@Autowired
+	private BookingsRepository bookingsRepository;
+
+	@Autowired
+	private PassengerRepository passengerRepository;
+
+	@Autowired
+	private FlightRepository flightRepository;
+
+	public List<BookingDetails> getdetailsByPnr(int pnr) {
+
+		Iterable<Integer> pnrs = Ints.asList(pnr);
+		List<BookingDetails> bookingsList = bookingsRepository.findAllById(pnrs);
+
+		return bookingsList;
+	}
+
+	public List<BookingDetails> getdetailsByUsrId(int id) {
+
+		List<BookingDetails> bookingsList = bookingsRepository.findByuserID(id);
+
+		return bookingsList;
+	}
+
+	private String saveBookingsDetails(BookingDetails b) {
+		BookingDetails bd = bookingsRepository.save(b);
+		if(!CollectionUtils.isEmpty(b.getPassengers())) {
+		b.getPassengers().forEach(p -> p.setPnr(bd.getPnr()));
+		Iterable<Passenger> list = b.getPassengers();
+		passengerRepository.saveAll(list);
+		}
+
+		return "Booking is successful with this pnr no:" + bd.getPnr();
+	}
+
+	public String cancelBooking(int pnr) {
+		BookingDetails bd = new BookingDetails();
+		Optional<BookingDetails> obd = bookingsRepository.findById(pnr);
+		if (obd.isPresent()) {
+			bd = obd.get();
+			bd.setStatus("CANCELLED");
+			bookingsRepository.save(bd);
+		}
+		return "Booking cancelled succesfully w.r.t the pnr:" + pnr;
+	}
+
+	public String bookTickets(int flightId) {
+		
+		Optional<Flight> flight = flightRepository.findById(flightId);
+		BookingDetails bd = doSetBookingBean(flight.get());
+		return saveBookingsDetails(bd);
+		
+	}
+
+	private BookingDetails doSetBookingBean(Flight flight) {
+
+		BookingDetails bd = new BookingDetails();
+		bd.setFlightID(flight.getId());
+		bd.setFromPlace(flight.getFromCity());
+		bd.setToPlace(flight.getToCity());
+		bd.setFromTime(LocalDateTime.now());
+		bd.setToTime(LocalDateTime.now());
+
+		return bd;
+	}
+}

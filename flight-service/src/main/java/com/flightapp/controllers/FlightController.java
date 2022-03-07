@@ -8,37 +8,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flightapp.entities.Flight;
 import com.flightapp.services.FlightService;
 
 @RestController
+@RequestMapping("/flights")
 public class FlightController {
 
 	@Autowired
 	private FlightService flightService;
 
-	@GetMapping("/flights")
+	@GetMapping("")
 	private List<Flight> getAllFlights() {
 		return flightService.getAllFlights();
 	}
-	
-	@PostMapping("/flights")
-	private Flight saveFlight(@RequestBody Flight f)
-	{
-		return flightService.saveFlight(f);
+
+	@PostMapping
+	private int saveFlight(@RequestBody Flight flight) {
+		return flightService.saveFlight(flight);
 	}
-	
-	@GetMapping("/flights/cancelflight/{id}")
-	private Flight cancelFlight(@PathVariable int id)
-	{
-		return flightService.updateStatus(id);
+
+	@PutMapping("/cancelflight/{id}")
+	private void cancelFlight(@PathVariable int id) {
+		flightService.updateStatus(id);
 	}
-	
-	@PostMapping("flights/updateflight")
-	private Flight updateFlightDetails(@RequestBody Flight f)
-	{
-		return flightService.updateFlight(f);
+
+	@PostMapping("/updateflight")
+	private void updateFlight(@RequestBody Flight flight) {
+		flightService.updateFlight(flight);
 	}
 }

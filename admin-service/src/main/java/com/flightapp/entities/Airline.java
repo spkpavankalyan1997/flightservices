@@ -2,38 +2,40 @@ package com.flightapp.entities;
 
 public class Airline {
 
-	private int airLineId;
+	private int id;
 
-	private String airLineCode;
+	private String code;
 
-	private String airLineDesc;
+	private String desc;
 
 	private double rating;
 
 	private String status;
 
-	public int getAirLineId() {
-		return airLineId;
+	private String instrument;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setAirLineId(int airLineId) {
-		this.airLineId = airLineId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getAirLineCode() {
-		return airLineCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setAirLineCode(String airLineCode) {
-		this.airLineCode = airLineCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getAirLineDesc() {
-		return airLineDesc;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setAirLineDesc(String airLineDesc) {
-		this.airLineDesc = airLineDesc;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public double getRating() {
@@ -50,6 +52,14 @@ public class Airline {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(String instrument) {
+		this.instrument = instrument;
 	}
 
 }

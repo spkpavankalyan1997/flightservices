@@ -2,29 +2,37 @@ package com.flightapp.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Passenger {
 
-	@Column(nullable = false)
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@Column(nullable = false)
 	private int pnr;
-	
+
 	@Column(nullable = false)
-	private String passengerName;
-	
+	private String name;
+
 	@Column(nullable = false)
-	private String passengerGender;
-	
+	private String gender;
+
 	@Column(nullable = false)
 	private int age;
-	
+
 	@Column(nullable = false)
 	private String meals;
-	
+
 	@Column(nullable = false)
 	private int seatNo;
+
+	@Column(nullable = false)
+	private double amount;
 
 	public int getPnr() {
 		return pnr;
@@ -34,20 +42,20 @@ public class Passenger {
 		this.pnr = pnr;
 	}
 
-	public String getPassengerName() {
-		return passengerName;
+	public String getName() {
+		return name;
 	}
 
-	public void setPassengerName(String passengerName) {
-		this.passengerName = passengerName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getPassengerGender() {
-		return passengerGender;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setPassengerGender(String passengerGender) {
-		this.passengerGender = passengerGender;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public int getAge() {
@@ -73,5 +81,13 @@ public class Passenger {
 	public void setSeatNo(int seatNo) {
 		this.seatNo = seatNo;
 	}
-	
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
 }

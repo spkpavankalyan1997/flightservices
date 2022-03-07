@@ -2,3 +2,17 @@
 1646321801670	Copy compilation unit
 1646323764486	Copy compilation unit
 1646323811625	Copy compilation unit
+1646489929906	Delete element
+1646491573023	Rename field 'airLineCode'
+1646491588241	Rename field 'airLineDesc'
+1646491836851	Rename field 'flightId'
+1646491981863	Rename field 'busiSeats'
+1646492011046	Rename field 'nbSeats'
+1646492039159	Rename field 'busiClassPrice'
+1646492060833	Rename field 'NonBusiClassPrice'
+1646492171100	Rename field 'meal'
+1646492901965	Rename field 'totAmt'
+1646492961577	Rename field 'flightid'
+1646493044989	Rename field 'passengerName'
+1646493057945	Rename field 'passengerGender'
+1646473840640	Rename type 'BookingService'

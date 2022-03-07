@@ -13,11 +13,11 @@ public interface FlightRepository extends JpaRepository<Flight, Integer>{
 
 	@Transactional
 	@Modifying
-	@Query("update Flight f set f.status=:status where f.airLine=:airlinecode")
-	void updateBlockedStatus(@Param("status") String status,@Param("airlinecode") String code);
+	@Query("update Flight f set f.status=:status where f.airlineCode=:airlineCode")
+	void updateBlockedStatus(@Param("status") String status,@Param("airlineCode") String code);
 	
 	@Transactional
 	@Modifying
-	@Query("update Flight f set f.status=:status where f.flightId=:flightId")
-	void updateCancelledStatus(@Param("status") String status,@Param("flightId") int flightId);
+	@Query("update Flight f set f.status=:status where f.id=:id")
+	void updateCancelledStatus(@Param("status") String status,@Param("id") int id);
 }

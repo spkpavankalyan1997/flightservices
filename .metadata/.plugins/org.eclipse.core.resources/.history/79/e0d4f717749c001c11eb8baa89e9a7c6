@@ -1,0 +1,83 @@
+package com.flightapp.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@Column(nullable = false)
+	private String name;
+	
+	@Column(nullable = false)
+	private String email;
+
+	@Column(nullable = false)
+	private String mobile;
+
+	@Column(nullable = false)
+	private String password;
+
+	@JsonInclude
+	@Column(nullable = false)
+	private int usrAge;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int usrID) {
+		this.id = usrID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String usrName) {
+		this.name = usrName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String usrEmail) {
+		this.email = usrEmail;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String usrMobile) {
+		this.mobile = usrMobile;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String usrPassword) {
+		this.password = usrPassword;
+	}
+
+	public int getUsrAge() {
+		return usrAge;
+	}
+
+	public void setUsrAge(int usrAge) {
+		this.usrAge = usrAge;
+	}
+
+}
