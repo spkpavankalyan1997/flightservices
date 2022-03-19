@@ -1,0 +1,5 @@
+package com.flightapp.constants;
+
+public enum AirportConstants {
+
+}

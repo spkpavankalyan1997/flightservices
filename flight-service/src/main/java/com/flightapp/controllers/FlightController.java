@@ -1,8 +1,12 @@
 package com.flightapp.controllers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +20,7 @@ import com.flightapp.services.FlightService;
 
 @RestController
 @RequestMapping("/flights")
+@CrossOrigin
 public class FlightController {
 
 	@Autowired
@@ -26,7 +31,7 @@ public class FlightController {
 		return flightService.getAllFlights();
 	}
 
-	@PostMapping
+	@PostMapping("")
 	private int saveFlight(@RequestBody Flight flight) {
 		return flightService.saveFlight(flight);
 	}
@@ -39,5 +44,21 @@ public class FlightController {
 	@PostMapping("/updateflight")
 	private void updateFlight(@RequestBody Flight flight) {
 		flightService.updateFlight(flight);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteFlight(@PathVariable int id) {
+		flightService.deleteFlight(id);
+	}
+
+	@GetMapping("/searchedflights")
+	public List<Flight> getSearchedFlights(String from, String to,
+			@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
+		return flightService.getSearchedFlights(from, to, date);
+	}
+
+	@GetMapping("/{id}")
+	public Flight getFlight(@PathVariable int id) {
+		return flightService.getFlight(id);
 	}
 }

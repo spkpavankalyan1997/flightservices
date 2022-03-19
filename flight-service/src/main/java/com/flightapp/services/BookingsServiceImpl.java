@@ -1,6 +1,5 @@
 package com.flightapp.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,12 +9,10 @@ import org.springframework.util.CollectionUtils;
 
 import com.flightapp.constants.FlightServiceStatus;
 import com.flightapp.entities.BookingDetails;
-import com.flightapp.entities.Flight;
 import com.flightapp.entities.Passenger;
 import com.flightapp.repositories.BookingsRepository;
 import com.flightapp.repositories.FlightRepository;
 import com.flightapp.repositories.PassengerRepository;
-import com.google.common.primitives.Ints;
 
 @Service
 public class BookingsServiceImpl implements BookingsService {
@@ -29,12 +26,19 @@ public class BookingsServiceImpl implements BookingsService {
 	@Autowired
 	private FlightRepository flightRepository;
 
-	public List<BookingDetails> getdetailsByPnr(int pnr) {
+	public BookingDetails getdetailsByPnr(int pnr) {
 
-		Iterable<Integer> pnrs = Ints.asList(pnr);
-		List<BookingDetails> bookingsList = bookingsRepository.findAllById(pnrs);
+		Optional<BookingDetails> bookingDetails = bookingsRepository.findById(pnr);
 
-		return bookingsList;
+		if (bookingDetails.isPresent()) {
+			List<Passenger> passengers = passengerRepository.findByPnr(bookingDetails.get().getPnr());
+			if (!CollectionUtils.isEmpty(passengers)) {
+				bookingDetails.get().setPassengers(passengers);
+			}
+			return bookingDetails.get();
+		}
+		return new BookingDetails();
+		
 	}
 
 	public List<BookingDetails> getdetailsByUsrId(int id) {
@@ -44,40 +48,24 @@ public class BookingsServiceImpl implements BookingsService {
 		return bookingsList;
 	}
 
-	private void saveBookingsDetails(BookingDetails b) {
-		BookingDetails bd = bookingsRepository.save(b);
-		if (!CollectionUtils.isEmpty(b.getPassengers())) {
-			b.getPassengers().forEach(p -> p.setPnr(bd.getPnr()));
-			Iterable<Passenger> list = b.getPassengers();
+	public void cancelBooking(int pnr) {
+		bookingsRepository.updateCancelledStatus(FlightServiceStatus.CANCELLED.name(), pnr);
+	}
+
+	public void bookTickets(BookingDetails bookingDetails) {
+
+		BookingDetails bookingdetails = bookingsRepository.save(bookingDetails);
+		if (!CollectionUtils.isEmpty(bookingDetails.getPassengers())) {
+			bookingDetails.getPassengers().forEach(p -> p.setPnr(bookingdetails.getPnr()));
+			Iterable<Passenger> list = bookingDetails.getPassengers();
 			passengerRepository.saveAll(list);
 		}
-	}
-
-	public void cancelBooking(int pnr) {
-		Optional<BookingDetails> bookingdetails = bookingsRepository.findById(pnr);
-		if (bookingdetails.isPresent()) {
-			bookingdetails.get().setStatus(FlightServiceStatus.CANCELLED.name());
-			bookingsRepository.save(bookingdetails.get());
-		}
-	}
-
-	public void bookTickets(int flightId) {
-
-		Optional<Flight> flight = flightRepository.findById(flightId);
-		BookingDetails bd = doSetBookingBean(flight.get());
-		saveBookingsDetails(bd);
 
 	}
 
-	private BookingDetails doSetBookingBean(Flight flight) {
+	@Override
+	public long checkBookingFlightCount(int flightId) {
 
-		BookingDetails bd = new BookingDetails();
-		bd.setFlightID(flight.getId());
-		bd.setFromPlace(flight.getFromCity());
-		bd.setToPlace(flight.getToCity());
-		bd.setFromTime(LocalDateTime.now());
-		bd.setToTime(LocalDateTime.now());
-
-		return bd;
+		return bookingsRepository.countByflightID(flightId);
 	}
 }

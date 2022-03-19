@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +24,7 @@ public class BookingsContoller {
 	private BookingsService bookingsService;
 
 	@GetMapping("/bypnr/{pnr}")
-	public List<BookingDetails> getBookingsByPnr(@PathVariable int pnr) {
+	public BookingDetails getBookingsByPnr(@PathVariable int pnr) {
 		return bookingsService.getdetailsByPnr(pnr);
 	}
 
@@ -30,14 +33,23 @@ public class BookingsContoller {
 		return bookingsService.getdetailsByUsrId(id);
 	}
 
-	@GetMapping("/cancel/{pnr}")
+	@PutMapping("/cancel/{pnr}")
 	public void cancelBooking(@PathVariable int pnr) {
 		bookingsService.cancelBooking(pnr);
 	}
 
-	@GetMapping("/book/{id}")
-	public void bookTicket(@PathVariable int id) {
-		bookingsService.bookTickets(id);
+	@PostMapping("/book")
+	public void bookTicket(@RequestBody BookingDetails bookingdetails) {
+		bookingsService.bookTickets(bookingdetails);
+	}
+
+	@GetMapping("/isflightusing/{flightid}")
+	public boolean checkFlightUsability(@PathVariable int flightid) {
+		long count = bookingsService.checkBookingFlightCount(flightid);
+		if (count > 0) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -11,5 +11,13 @@ public interface AirlineService {
 	int saveAirline(Airline airline);
 
 	void updateStatus(int airlineid);
+	
+	Airline getAirline(int id);
+	
+	void deleteAirline(int id);
+	
+	void updateAirline(Airline airline);
+	
+	List<String> getAirlineCodes();
 
 }

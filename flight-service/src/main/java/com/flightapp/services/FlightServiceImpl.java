@@ -1,5 +1,6 @@
 package com.flightapp.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class FlightServiceImpl implements FlightService {
 	private FlightRepository flightRepository;
 
 	public List<Flight> getAllFlights() {
-		return flightRepository.findAll();
+		return flightRepository.getAllFlights(LocalDateTime.now());
 	}
 
 	public int saveFlight(Flight flight) {
@@ -36,5 +37,27 @@ public class FlightServiceImpl implements FlightService {
 		if (flight1.isPresent()) {
 			flightRepository.save(flight);
 		}
+	}
+
+	@Override
+	public void deleteFlight(int id) {
+		flightRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Flight> getSearchedFlights(String fromCity, String toCity, LocalDateTime selectedDate) {
+		return flightRepository.getSearchedFlights(fromCity, toCity, selectedDate, LocalDateTime.now());
+	}
+
+	@Override
+	public Flight getFlight(int id) {
+
+		return flightRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Flight> getSearchedFlights(String fromCity, String toCity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

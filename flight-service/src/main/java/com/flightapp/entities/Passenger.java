@@ -12,7 +12,7 @@ public class Passenger {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	@Column(nullable = false)
 	private int pnr;
 
@@ -26,13 +26,10 @@ public class Passenger {
 	private int age;
 
 	@Column(nullable = false)
-	private String meals;
+	private String mealsType;
 
 	@Column(nullable = false)
-	private int seatNo;
-
-	@Column(nullable = false)
-	private double amount;
+	private String ticketType;
 
 	public int getPnr() {
 		return pnr;
@@ -66,28 +63,28 @@ public class Passenger {
 		this.age = age;
 	}
 
-	public String getMeals() {
-		return meals;
+	public int getId() {
+		return id;
 	}
 
-	public void setMeals(String meals) {
-		this.meals = meals;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public int getSeatNo() {
-		return seatNo;
+	public String getMealsType() {
+		return mealsType;
 	}
 
-	public void setSeatNo(int seatNo) {
-		this.seatNo = seatNo;
+	public void setMealsType(String mealsType) {
+		this.mealsType = mealsType;
 	}
 
-	public double getAmount() {
-		return amount;
+	public String getTicketType() {
+		return ticketType;
 	}
 
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setTicketType(String ticketType) {
+		this.ticketType = ticketType;
 	}
 
 }

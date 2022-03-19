@@ -42,16 +42,13 @@ public class Flight {
 	private double businessClassPrice;
 
 	@Column(nullable = false)
-	private double NonBusinessClassPrice;
-
-	@Column(nullable = false)
-	private String[] mealTypes;
+	private double nonBusinessClassPrice;
 
 	@Column(nullable = false)
 	private int noofRows = 0;
 
 	@Column(nullable = false, updatable = true)
-	private String status;
+	private String status="";
 
 	public int getId() {
 		return id;
@@ -126,19 +123,11 @@ public class Flight {
 	}
 
 	public double getNonBusinessClassPrice() {
-		return NonBusinessClassPrice;
+		return nonBusinessClassPrice;
 	}
 
 	public void setNonBusinessClassPrice(double nonBusiClassPrice) {
-		NonBusinessClassPrice = nonBusiClassPrice;
-	}
-
-	public String[] getMealTypes() {
-		return mealTypes;
-	}
-
-	public void setMealTypes(String[] meal) {
-		this.mealTypes = meal;
+		nonBusinessClassPrice = nonBusiClassPrice;
 	}
 
 	public int getNoofRows() {

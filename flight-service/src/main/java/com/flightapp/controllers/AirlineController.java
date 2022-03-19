@@ -2,7 +2,11 @@ package com.flightapp.controllers;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +20,7 @@ import com.flightapp.services.AirlineService;
 
 @RestController
 @RequestMapping("/airlines")
+@CrossOrigin
 public class AirlineController {
 
 	@Autowired
@@ -25,14 +30,35 @@ public class AirlineController {
 	public List<Airline> getAllAirlines() {
 		return airlineService.getAllAirlines();
 	}
+	
+	@GetMapping("/{id}")
+	public Airline getAirlines(@PathVariable int id) {
+		return airlineService.getAirline(id);
+	}
 
 	@PostMapping
 	public int saveAirline(@RequestBody Airline airline) {
 		return airlineService.saveAirline(airline);
 	}
 
-	@PutMapping("/block/{airlineid}")
-	public void blockAirlines(@PathVariable int airlineid) {
-		airlineService.updateStatus(airlineid);
+	@GetMapping("/block/{id}")
+	public void blockAirlines(@PathVariable int id) {
+		airlineService.updateStatus(id);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deleteAirline(@PathVariable int id) {
+		airlineService.deleteAirline(id);
+	}
+	
+	@PutMapping
+	public void updateAirline(@RequestBody Airline airline ) {
+		airlineService.updateAirline(airline);
+	}
+	
+	@GetMapping("/codes")
+	public List<String> getAirlineCodes()
+	{
+		return airlineService.getAirlineCodes();
 	}
 }

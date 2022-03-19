@@ -24,6 +24,8 @@ public class BookingDetails {
 	private List<Passenger> passengers;
 
 	private String status;
+	
+	private int totalPassengers;
 
 	public int getPnr() {
 		return pnr;
@@ -103,6 +105,14 @@ public class BookingDetails {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getTotalPassengers() {
+		return totalPassengers;
+	}
+
+	public void setTotalPassengers(int totalPassengers) {
+		this.totalPassengers = totalPassengers;
 	}
 
 }

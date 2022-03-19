@@ -1,0 +1,6 @@
+package com.flightapp.constants;
+
+public enum AirportConstants {
+
+	HYD("Hyderabad"),CHN("Chennai"),MUM("Mumbai"),BANG("Banglore");
+}

@@ -38,4 +38,35 @@ public class AirlineServiceImpl implements AirlineService {
 		}
 	}
 
+	@Override
+	public Airline getAirline(int id) {
+
+		Optional<Airline> airline = airlineRepository.findById(id);
+
+		if (airline.isPresent()) {
+			return airline.get();
+		}
+		return new Airline();
+	}
+
+	@Override
+	public void deleteAirline(int id) {
+		airlineRepository.deleteById(id);
+
+	}
+
+	@Override
+	public void updateAirline(Airline airline) {
+		Optional<Airline> airlines = airlineRepository.findById(airline.getId());
+		if (airlines.isPresent()) {
+			airlineRepository.save(airline);
+		}
+	}
+
+	@Override
+	public List<String> getAirlineCodes() {
+		
+		return airlineRepository.getAllAirlineCodes();
+	}
+
 }

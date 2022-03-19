@@ -1,0 +1,65 @@
+package com.flightapp.services;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import com.flightapp.constants.FlightServiceStatus;
+import com.flightapp.entities.BookingDetails;
+import com.flightapp.entities.Flight;
+import com.flightapp.entities.Passenger;
+import com.flightapp.repositories.BookingsRepository;
+import com.flightapp.repositories.FlightRepository;
+import com.flightapp.repositories.PassengerRepository;
+import com.google.common.primitives.Ints;
+
+@Service
+public class BookingsServiceImpl implements BookingsService {
+
+	@Autowired
+	private BookingsRepository bookingsRepository;
+
+	@Autowired
+	private PassengerRepository passengerRepository;
+
+	@Autowired
+	private FlightRepository flightRepository;
+
+	public List<BookingDetails> getdetailsByPnr(int pnr) {
+
+		Iterable<Integer> pnrs = Ints.asList(pnr);
+		List<BookingDetails> bookingsList = bookingsRepository.findAllById(pnrs);
+
+		return bookingsList;
+	}
+
+	public List<BookingDetails> getdetailsByUsrId(int id) {
+
+		List<BookingDetails> bookingsList = bookingsRepository.findByuserID(id);
+
+		return bookingsList;
+	}
+
+	public void cancelBooking(int pnr) {
+		Optional<BookingDetails> bookingdetails = bookingsRepository.findById(pnr);
+		if (bookingdetails.isPresent()) {
+			bookingdetails.get().setStatus(FlightServiceStatus.CANCELLED.name());
+			bookingsRepository.save(bookingdetails.get());
+		}
+	}
+
+	public void bookTickets(BookingDetails bookingDetails) {
+
+		BookingDetails bookingdetails = bookingsRepository.save(bookingDetails);
+		if (!CollectionUtils.isEmpty(bookingDetails.getPassengers())) {
+			bookingDetails.getPassengers().forEach(p -> p.setPnr(bookingdetails.getPnr()));
+			Iterable<Passenger> list = bookingDetails.getPassengers();
+			passengerRepository.saveAll(list);
+		}
+
+	}
+}

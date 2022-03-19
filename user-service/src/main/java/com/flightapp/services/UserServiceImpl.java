@@ -19,11 +19,11 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findAll();
 	}
 
-	public int saveUser(User user) {
+	public Long saveUser(User user) {
 		return userRepository.save(user).getId();
 	}
 
-	public User getUser(int id) {
+	public User getUser(Long id) {
 		Optional<User> usr = userRepository.findById(id);
 		return usr.get();
 	}

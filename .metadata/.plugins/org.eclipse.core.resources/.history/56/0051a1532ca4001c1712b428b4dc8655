@@ -1,0 +1,6 @@
+package com.flightapp.entities;
+
+public enum ERole {
+	USER,
+    ROLE_ADMIN
+}

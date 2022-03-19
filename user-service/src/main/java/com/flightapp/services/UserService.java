@@ -8,8 +8,8 @@ public interface UserService {
 
 	List<User> getAllUsers();
 
-	int saveUser(User user);
+	Long saveUser(User user);
 
-	User getUser(int id);
+	User getUser(Long id);
 
 }
