@@ -37,6 +37,10 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<properties>
+         <sonar.organization>spkpavankalyan1997</sonar.organization>
+         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        </properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
